@@ -57,12 +57,12 @@ public class PlayerController : MonoBehaviour
                     Instantiate(dirtHole, new Vector3(hit.point.x, hit.point.y - 0.1f, hit.point.z), Quaternion.Euler(90.0f, 90.0f, 90.0f));
                     Debug.Log(ray);
                 }
-                if (hit.collider.name == "DirtHole(Clone)" && currentTool == "Shovel")
+                if (hit.collider.name == "DirtHole(Clone)" && currentTool == "SeedBag")
                 {
                     Instantiate(corn, new Vector3(hit.point.x, hit.point.y, hit.point.z), Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
                     Destroy(hit.collider.gameObject);
                 }
-                if (hit.collider.name == "corn(Clone)" && currentTool == "SeedBag")
+                if (hit.collider.name == "corn(Clone)" && currentTool == "Shovel")
                 {
                     Destroy(hit.collider.gameObject);
                     cornCount++;
