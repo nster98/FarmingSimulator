@@ -12,6 +12,8 @@ public class PlantGrow : MonoBehaviour
 
     private int index = 0;
 
+    private bool finishedGrowing = false;
+
 
     void Start()
     {
@@ -29,9 +31,21 @@ public class PlantGrow : MonoBehaviour
         {
             partsOfPlant[index].SetActive(true);
 
-            if (index <= amountOfParts)
+            if (finishedGrowing != true)
                 index++;
             timer = 0;
+        }
+
+        if (index > amountOfParts) finishedGrowing = true;
+    }
+
+    private void OnMouseDown()
+    {
+        Debug.Log("Clicked");
+        if (finishedGrowing == true)
+        {
+            Destroy(gameObject);
+            // Add corn counter here
         }
     }
 }

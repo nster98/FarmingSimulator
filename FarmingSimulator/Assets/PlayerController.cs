@@ -33,6 +33,10 @@ public class PlayerController : MonoBehaviour
                     Instantiate(corn, new Vector3(hit.point.x, hit.point.y, hit.point.z), Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
                     Debug.Log(ray);
                 }
+                if (hit.collider.name == "corn(Clone)")
+                {
+                    Destroy(hit.collider.gameObject);
+                }
                 else
                     Debug.Log("Plane clicked but raycast hit something else");
             }
