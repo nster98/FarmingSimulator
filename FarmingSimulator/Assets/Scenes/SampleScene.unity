@@ -1349,6 +1349,7 @@ MonoBehaviour:
   tool1: {fileID: 2047883529}
   tool2: {fileID: 911304761}
   tool3: {fileID: 1692480495}
+  currtool: 
 --- !u!114 &339276407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1366,6 +1367,10 @@ MonoBehaviour:
   tool3: {fileID: 1692480495}
   cam: {fileID: 339276405}
   corn: {fileID: 1805104841, guid: ec3f102b9e9ff834bb6013998b46f505, type: 3}
+  dirtHole: {fileID: 3576788349200707021, guid: 1a2fdc06dcfecdd4d9dd0d574c3009b4,
+    type: 3}
+  menu: {fileID: 1439843555}
+  cornText: {fileID: 409856584}
 --- !u!1001 &358821331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1736,7 +1741,7 @@ GameObject:
   - component: {fileID: 409856587}
   - component: {fileID: 409856586}
   m_Layer: 5
-  m_Name: Text
+  m_Name: CornAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1794,7 +1799,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Corn: '
+  m_Text: 'Corn: 0'
 --- !u!222 &409856587
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3687,6 +3692,7 @@ MonoBehaviour:
   tool1: {fileID: 2047883529}
   tool2: {fileID: 911304761}
   tool3: {fileID: 1692480495}
+  currtool: 
 --- !u!1001 &773249552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6780,13 +6786,14 @@ GameObject:
   - component: {fileID: 1439843556}
   - component: {fileID: 1439843558}
   - component: {fileID: 1439843557}
+  - component: {fileID: 1439843559}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1439843556
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6844,6 +6851,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439843555}
   m_CullTransparentMesh: 0
+--- !u!114 &1439843559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439843555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adec4ce239b8d4e4dafc2c25df78b903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1445765231 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100020, guid: 622a427d1019ccd478b84f6cd6a1149a,

@@ -522,7 +522,7 @@ MonoBehaviour:
   - {fileID: 1390681159}
   - {fileID: 1098322235}
   - {fileID: 1840682208}
-  secondsToGrow: 0
+  secondsToGrow: 5
 --- !u!65 &4723004178603154711
 BoxCollider:
   m_ObjectHideFlags: 0

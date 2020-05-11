@@ -11,31 +11,62 @@ public class PlayerController : MonoBehaviour
     public Camera cam;
 
     public GameObject corn;
+    public GameObject dirtHole;
+    public GameObject menu;
+
+    public GameObject cornText;
+
+    private int cornCount;
+
+    private EnableDisableTool toolScript;
+    private string currentTool;
+
 
     void Start()
     {
-        
+        toolScript = this.GetComponent<EnableDisableTool>();
     }
 
     void Update()
     {
+        currentTool = toolScript.currtool;
+
+        // Menu
+
+        if (Input.GetKey(KeyCode.Tab))
+        {
+            menu.SetActive(true);
+        }
+        else
+        {
+            menu.SetActive(false);
+        }
+        
+        // Clicking
+
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Clicked?");
             var screenPos = Input.mousePosition;
             var ray = cam.ScreenPointToRay(screenPos);
             RaycastHit hit;
+
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                Debug.Log(hit.collider.name);
-                if (hit.collider.name == "Terrain")
+                if (hit.collider.name == "Terrain" && currentTool == "Hoe")
                 {
-                    Instantiate(corn, new Vector3(hit.point.x, hit.point.y, hit.point.z), Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                    Instantiate(dirtHole, new Vector3(hit.point.x, hit.point.y - 0.1f, hit.point.z), Quaternion.Euler(90.0f, 90.0f, 90.0f));
                     Debug.Log(ray);
                 }
-                if (hit.collider.name == "corn(Clone)")
+                if (hit.collider.name == "DirtHole(Clone)" && currentTool == "Shovel")
+                {
+                    Instantiate(corn, new Vector3(hit.point.x, hit.point.y, hit.point.z), Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                    Destroy(hit.collider.gameObject);
+                }
+                if (hit.collider.name == "corn(Clone)" && currentTool == "SeedBag")
                 {
                     Destroy(hit.collider.gameObject);
+                    cornCount++;
+                    cornText.GetComponent<UnityEngine.UI.Text>().text = "Corn: " + cornCount;
                 }
                 else
                     Debug.Log("Plane clicked but raycast hit something else");
