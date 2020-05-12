@@ -15,16 +15,22 @@ public class PlayerController : MonoBehaviour
     public GameObject menu;
 
     public GameObject cornText;
+    //public GameObject moneyText;
+    //public GameObject cornSeedsText;
 
-    private int cornCount;
+    private int cornCount=0;
+    private double moneyCount=1;
+    private int cornSeedsCount=0;
 
     private EnableDisableTool toolScript;
     private string currentTool;
 
+    private bool menuOn = true;
 
     void Start()
     {
         toolScript = this.GetComponent<EnableDisableTool>();
+        menu.SetActive(false);
     }
 
     void Update()
@@ -36,12 +42,33 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Tab))
         {
             menu.SetActive(true);
+            // menuOn = !menuOn;
+            //moneyText.GetComponent<UnityEngine.UI.Text>().text = "\n Money:" + moneyCount;
+            cornText.GetComponent<UnityEngine.UI.Text>().text = "Corn: " + cornCount + "\nSeeds:" + cornSeedsCount + "\nMoney: $" + moneyCount + ". Buy seed for $0.1? (Y)";
+            while (true)
+            {
+                if (Input.GetKeyUp(KeyCode.Y))
+                {
+                    if (moneyCount < 0.1)
+                    {
+                        cornText.GetComponent<UnityEngine.UI.Text>().text = "Corn: " + cornCount + "\nSeeds:" + cornSeedsCount + "\nMoney: $" + moneyCount + ". Not enough for seeds.";
+                        moneyCount = 0;
+                    }
+                    else
+                    {
+                        moneyCount = moneyCount - 0.1;
+                        cornSeedsCount++;
+                        cornText.GetComponent<UnityEngine.UI.Text>().text = "Corn: " + cornCount + "\nSeeds:" + cornSeedsCount + "\nMoney: $" + moneyCount + ". Buy seed for $0.1? (Y)";
+
+                    }
+                }
+            }
         }
         else
         {
             menu.SetActive(false);
         }
-        
+
         // Clicking
 
         if (Input.GetMouseButtonDown(0))
@@ -66,7 +93,9 @@ public class PlayerController : MonoBehaviour
                 {
                     Destroy(hit.collider.gameObject);
                     cornCount++;
-                    cornText.GetComponent<UnityEngine.UI.Text>().text = "Corn: " + cornCount;
+                    cornText.GetComponent<UnityEngine.UI.Text>().text = "Corn: " + cornCount
+                        + "\nMoney: " + moneyCount + "$. Buy seed for $0.1?"; 
+
                 }
                 else
                     Debug.Log("Plane clicked but raycast hit something else");
