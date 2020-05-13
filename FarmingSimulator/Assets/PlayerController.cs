@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     //public GameObject moneyText;
     //public GameObject cornSeedsText;
 
+    public ParticleSystem dirtKick;
+
     private int cornCount=0;
     private double moneyCount=1;
     private int cornSeedsCount=0;
@@ -194,10 +196,12 @@ public class PlayerController : MonoBehaviour
                     Instantiate(dirtHole, new Vector3(hit.point.x, hit.point.y - 0.1f, hit.point.z), Quaternion.Euler(90.0f, 90.0f, 90.0f));
                     Debug.Log(ray);
                 }
-                if (hit.collider.name == "DirtHole(Clone)" && currentTool == "SeedBag")
+                if (hit.collider.name == "DirtHole(Clone)" && currentTool == "SeedBag" && cornSeedsCount != 0)
                 {
-                    Instantiate(corn, new Vector3(hit.point.x, hit.point.y, hit.point.z), Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                    Instantiate(corn, new Vector3(hit.point.x, hit.point.y - 0.2f, hit.point.z), Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                    Instantiate(dirtKick, new Vector3(hit.point.x, hit.point.y, hit.point.z), Quaternion.identity);
                     Destroy(hit.collider.gameObject);
+                    cornSeedsCount--;
                 }
                 if (hit.collider.name == "corn(Clone)" && currentTool == "Shovel")
                 {
