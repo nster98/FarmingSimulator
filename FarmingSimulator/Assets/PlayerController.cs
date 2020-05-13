@@ -203,8 +203,6 @@ public class PlayerController : MonoBehaviour
                 {
                     Destroy(hit.collider.gameObject);
                     cornCount++;
-                    cornText.GetComponent<UnityEngine.UI.Text>().text = "Corn: " + cornCount
-                        + "\nMoney: " + moneyCount + "$. Buy seed for $0.1?"; 
 
                 }
                 else
