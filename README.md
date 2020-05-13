@@ -1,10 +1,12 @@
 # FarmingSimulator
 Rutgers VR Final Project
 
+Controls:
+Click on bed to reset time to 0.3 (mid morning)
+Hold tab to view menu, buy seeds with Y and sell corn with Q.
+
 # TODO
 
-* Day-Night and sleeping if time
 * Corn cob appears: generate small particle effect.
 	- Particle effect created; need to apply it.
-* Door and ball for physics
-* Textures for tools
+* Door for physics
