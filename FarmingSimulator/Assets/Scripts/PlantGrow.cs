@@ -8,6 +8,8 @@ public class PlantGrow : MonoBehaviour
     public GameObject[] partsOfPlant;
     public int secondsToGrow;
 
+    public ParticleSystem readyParticles;
+
     private float timer = 0;
 
     private int index = 0;
@@ -27,16 +29,26 @@ public class PlantGrow : MonoBehaviour
     {
         timer += Time.deltaTime; // Timer
 
-        if (timer > secondsToGrow)
+        if (timer > secondsToGrow && finishedGrowing != true)
         {
             partsOfPlant[index].SetActive(true);
+
+            if (index == 6)
+            {
+                Instantiate(readyParticles, partsOfPlant[amountOfParts - 1].transform.position, Quaternion.identity);
+            }
 
             if (finishedGrowing != true)
                 index++;
             timer = 0;
         }
 
-        if (index > amountOfParts) finishedGrowing = true;
+        if (index > amountOfParts)
+        {
+            finishedGrowing = true;
+            //Instantiate(readyParticles, partsOfPlant[amountOfParts - 1].transform.position, Quaternion.identity);
+        }
+           
     }
 
     private void OnMouseDown()
