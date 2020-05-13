@@ -41,28 +41,138 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Tab))
         {
+            string sellcorn = "\nWould you like to sell corn for $1 each? (Q)";
+            string nocorn = ". You cannot sell corn.";
+            string allgoodstring = "Corn: " + cornCount + sellcorn + "\nSeeds: " + cornSeedsCount + "\nMoney: $" + moneyCount.ToString("0.00") + ". Buy seed for $0.1? (Y)";
+            string nocornstring = "Corn: " + cornCount + nocorn + "\nSeeds: " + cornSeedsCount + "\nMoney: $" + moneyCount.ToString("0.00") + ". Buy seed for $0.1? (Y)";
+            string nomoneystring = "Corn: " + cornCount + sellcorn+ "\nSeeds: " + cornSeedsCount + "\nMoney: $" + moneyCount.ToString("0.00") + ". Not enough for seeds.";
+            string allbadstring = "Corn: " + cornCount + nocorn + "\nSeeds: " + cornSeedsCount + "\nMoney: $" + moneyCount.ToString("0.00") + ". Not enough for seeds.";
             menu.SetActive(true);
             // menuOn = !menuOn;
             //moneyText.GetComponent<UnityEngine.UI.Text>().text = "\n Money:" + moneyCount;
-            cornText.GetComponent<UnityEngine.UI.Text>().text = "Corn: " + cornCount + "\nSeeds:" + cornSeedsCount + "\nMoney: $" + moneyCount + ". Buy seed for $0.1? (Y)";
-            while (true)
+            
+            if(moneyCount<=0 && cornCount!=0)
             {
-                if (Input.GetKeyUp(KeyCode.Y))
+                cornText.GetComponent<UnityEngine.UI.Text>().text = nomoneystring;
+            }
+            else if(cornCount == 0 && moneyCount!=0)
+            {
+                cornText.GetComponent<UnityEngine.UI.Text>().text = nocornstring;
+            }
+            else if(cornCount==0 && moneyCount <= 0)
+            {
+                cornText.GetComponent<UnityEngine.UI.Text>().text = allbadstring;
+            }
+            else
+            {
+                cornText.GetComponent<UnityEngine.UI.Text>().text = allgoodstring;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                if (moneyCount < 0.09)
                 {
-                    if (moneyCount < 0.1)
+                moneyCount = 0;
+                    if (moneyCount <= 0 && cornCount != 0)
                     {
-                        cornText.GetComponent<UnityEngine.UI.Text>().text = "Corn: " + cornCount + "\nSeeds:" + cornSeedsCount + "\nMoney: $" + moneyCount + ". Not enough for seeds.";
-                        moneyCount = 0;
+                        cornText.GetComponent<UnityEngine.UI.Text>().text = nomoneystring;
                     }
-                    else
+                    else if (cornCount == 0 && moneyCount != 0)
                     {
-                        moneyCount = moneyCount - 0.1;
-                        cornSeedsCount++;
-                        cornText.GetComponent<UnityEngine.UI.Text>().text = "Corn: " + cornCount + "\nSeeds:" + cornSeedsCount + "\nMoney: $" + moneyCount + ". Buy seed for $0.1? (Y)";
+                        cornText.GetComponent<UnityEngine.UI.Text>().text = nocornstring;
+                    }
+                    else if (cornCount == 0 && moneyCount <= 0)
+                    {
+                        cornText.GetComponent<UnityEngine.UI.Text>().text = allbadstring;
+                    }
+
+                }
+                else
+                {
+                moneyCount = moneyCount - 0.1;
+                if (moneyCount < 0.09)
+                {
+                    moneyCount = 0;
+                    cornSeedsCount++;
+                        if (moneyCount <= 0 && cornCount != 0)
+                        {
+                            cornText.GetComponent<UnityEngine.UI.Text>().text = nomoneystring;
+                        }
+                        else if (cornCount == 0 && moneyCount != 0)
+                        {
+                            cornText.GetComponent<UnityEngine.UI.Text>().text = nocornstring;
+                        }
+                        else if (cornCount == 0 && moneyCount <= 0)
+                        {
+                            cornText.GetComponent<UnityEngine.UI.Text>().text = allbadstring;
+                        }
+                    }
+                else { 
+                    cornSeedsCount++;
+                        if (moneyCount <= 0 && cornCount != 0)
+                        {
+                            cornText.GetComponent<UnityEngine.UI.Text>().text = nomoneystring;
+                        }
+                        else if (cornCount == 0 && moneyCount != 0)
+                        {
+                            cornText.GetComponent<UnityEngine.UI.Text>().text = nocornstring;
+                        }
+                        else if (cornCount == 0 && moneyCount <= 0)
+                        {
+                            cornText.GetComponent<UnityEngine.UI.Text>().text = allbadstring;
+                        }
+                        else
+                        {
+                            cornText.GetComponent<UnityEngine.UI.Text>().text = allgoodstring;
+                        }
 
                     }
                 }
+                
             }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if(cornCount != 0 )
+                {
+                    moneyCount=moneyCount+1;
+                    cornCount--;
+                    if (moneyCount <= 0 && cornCount != 0)
+                    {
+                        cornText.GetComponent<UnityEngine.UI.Text>().text = nomoneystring;
+                    }
+                    else if (cornCount == 0 && moneyCount != 0)
+                    {
+                        cornText.GetComponent<UnityEngine.UI.Text>().text = nocornstring;
+                    }
+                    else if (cornCount == 0 && moneyCount <= 0)
+                    {
+                        cornText.GetComponent<UnityEngine.UI.Text>().text = allbadstring;
+                    }
+                    else
+                    {
+                        cornText.GetComponent<UnityEngine.UI.Text>().text = allgoodstring;
+                    }
+
+                }
+
+                else
+                {
+                    if (moneyCount <= 0 && cornCount != 0)
+                    {
+                        cornText.GetComponent<UnityEngine.UI.Text>().text = nomoneystring;
+                    }
+                    else if (cornCount == 0 && moneyCount != 0)
+                    {
+                        cornText.GetComponent<UnityEngine.UI.Text>().text = nocornstring;
+                    }
+                    else if (cornCount == 0 && moneyCount <= 0)
+                    {
+                        cornText.GetComponent<UnityEngine.UI.Text>().text = allbadstring;
+                    }
+                }
+                
+            }
+
         }
         else
         {
