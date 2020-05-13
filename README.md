@@ -4,7 +4,6 @@ Rutgers VR Final Project
 # TODO
 
 * Particles
-* Selling Plant
-* Buying Seeds
+* Planting seeds removes them from inventory
 * Extra Plant?
 * Menu
