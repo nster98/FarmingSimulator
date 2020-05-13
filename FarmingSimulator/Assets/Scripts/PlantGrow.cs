@@ -12,7 +12,7 @@ public class PlantGrow : MonoBehaviour
 
     private float timer = 0;
 
-    private int index = 0;
+    public int index = 0;
 
     private bool finishedGrowing = false;
 

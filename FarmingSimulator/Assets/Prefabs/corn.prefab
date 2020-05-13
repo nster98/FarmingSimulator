@@ -525,6 +525,7 @@ MonoBehaviour:
   secondsToGrow: 1
   readyParticles: {fileID: 8047334559943013694, guid: 4e4a21daa6dc4214f82eee1ba4ed9cad,
     type: 3}
+  finishedGrowing: 0
 --- !u!65 &4723004178603154711
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -534,7 +535,7 @@ BoxCollider:
   m_GameObject: {fileID: 1805104841}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 6.1496735, z: 1}
   m_Center: {x: 0, y: 2.5748355, z: 0}

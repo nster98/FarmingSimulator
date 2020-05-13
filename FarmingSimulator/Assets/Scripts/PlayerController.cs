@@ -203,11 +203,10 @@ public class PlayerController : MonoBehaviour
                     Destroy(hit.collider.gameObject);
                     cornSeedsCount--;
                 }
-                if (hit.collider.name == "corn(Clone)" && currentTool == "Shovel")
+                if (hit.collider.name == "corn(Clone)" && currentTool == "Shovel" && hit.collider.GetComponent<PlantGrow>().index >= 6)
                 {
                     Destroy(hit.collider.gameObject);
                     cornCount++;
-
                 }
                 else
                     Debug.Log("Plane clicked but raycast hit something else");
