@@ -7,3 +7,5 @@ Rutgers VR Final Project
 * Planting seeds removes them from inventory
 * Extra Plant?
 * Menu
+* Day-Night and sleeping if time
+
